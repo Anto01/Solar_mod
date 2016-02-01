@@ -1,0 +1,67 @@
+******
+ENR835
+******
+`Site web du cours <https://ena.etsmtl.ca/course/view.php?id=3388/>`_
+
+`Livre de référence <http://gearju.com/225768904560/Data/Engineering/Solar/Solar%20Engineering%20of%20Thermal%20Processes,%204th%20Edition%20-%20GearTeam.pdf>`_
+
+
+Cours 1
+********
+**Introduction aux systèmes solaires. Radiation solaire extra-atmosphère**
+
+ * Exemples
+
+
+ * Notes
+
+Cours 2
+********
+**Radiation solaire disponible sur plan horizontal.  Calcul des ombrages**
+
+Cours 3
+********
+**Radiation sur plans inclinés:  modèles isotropes, HD,HDKR,Perez**
+
+Cours 4
+********
+**Introduction sur TRNSYS**
+
+Cours 5
+********
+**Théorie des capteurs solaires plats**
+
+Cours 6
+********
+**Théorie des capteurs solaires plats-calculs des pertes**
+
+Cours 7
+********
+**Théorie des capteurs solaires plats - Capteurs sous-vide**
+
+Cours 8
+********
+**Systèmes pressurisés ou à gravité-Stratégies de stockage**
+
+Cours 9
+********
+**Conception des systèmes de chauffage (méthode f-chart)**
+
+Cours 10
+********
+**Conception des systèmes de chauffage (méthode  du potentiel d’utilisation)**
+
+Cours 11
+********
+**Analyse économique**
+
+Cours 12
+********
+**Introduction à  la réfrigération solaire**
+
+Cours 13
+********
+**Panneaux Photo-voltaïques**
+
+
+
