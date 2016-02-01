@@ -3,6 +3,8 @@
 # for ReadTheDocs
 sphinx
 sphinxcontrib-napoleon
+setup.py install
+
 
 # Base packages
 pip==7.1.0
