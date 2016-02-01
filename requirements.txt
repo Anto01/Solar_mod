@@ -1,0 +1,5 @@
+## ReadTheDocs pip requirements file for creating a virualenv
+
+# for ReadTheDocs
+sphinx
+sphinxcontrib-napoleon
