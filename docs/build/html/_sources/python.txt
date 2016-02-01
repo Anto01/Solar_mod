@@ -6,7 +6,7 @@ Python
 ======
 Les programmes pythons sont documenté sur cette page. blablabla
 
-
+.. py:module:: solar_mod
 
 solar_mod
 ---------
