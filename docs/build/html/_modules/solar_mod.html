@@ -94,8 +94,12 @@
 <li class="toctree-l2"><a class="reference internal" href="../sphinx.html#autres">Autres</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../devoir.html">Devoirs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../devoir.html">Devoirs</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../devoir.html#devoir-2">Devoir #2</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../projet.html">Projet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../trnsys.html">trnsys</a></li>
 </ul>
 
           
@@ -164,9 +168,37 @@
 <span class="n">jjr</span> <span class="o">=</span> <span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">31</span><span class="p">,</span><span class="mi">59</span><span class="p">,</span><span class="mi">90</span><span class="p">,</span><span class="mi">120</span><span class="p">,</span><span class="mi">151</span><span class="p">,</span><span class="mi">181</span><span class="p">,</span><span class="mi">212</span><span class="p">,</span><span class="mi">243</span><span class="p">,</span><span class="mi">273</span><span class="p">,</span><span class="mi">304</span><span class="p">,</span><span class="mi">334</span><span class="p">])</span>
 <span class="n">nom</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;jan&#39;</span><span class="p">,</span><span class="s">&#39;fev&#39;</span><span class="p">,</span><span class="s">&#39;mars&#39;</span><span class="p">,</span><span class="s">&#39;avr&#39;</span><span class="p">,</span><span class="s">&#39;mai&#39;</span><span class="p">,</span><span class="s">&#39;juin&#39;</span><span class="p">,</span><span class="s">&#39;juil&#39;</span><span class="p">,</span><span class="s">&#39;aout&#39;</span><span class="p">,</span><span class="s">&#39;sept&#39;</span><span class="p">,</span><span class="s">&#39;oct&#39;</span><span class="p">,</span><span class="s">&#39;nov&#39;</span><span class="p">,</span><span class="s">&#39;dec&#39;</span><span class="p">]</span>
 
+<span class="k">def</span> <span class="nf">indice_clarete_horaire</span><span class="p">(</span><span class="n">I</span><span class="p">,</span><span class="n">Io</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Cette fonction calcul l&#39;indice de clareté horaire</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    I : float</span>
+<span class="sd">        Irradiation totale plan horozontal</span>
+<span class="sd">    Io : float</span>
+<span class="sd">        Irradiation extraterrestre horaire</span>
+<span class="sd">        </span>
+<span class="sd">        </span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    kt : float</span>
+<span class="sd">        Indice de clareté horaire</span>
+<span class="sd">        </span>
+<span class="sd">    References</span>
+<span class="sd">    ----------</span>
+<span class="sd">    Solar Engineering of Thermal Procecess (2.9.3)</span>
+<span class="sd">    </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="n">kt</span> <span class="o">=</span> <span class="n">I</span><span class="o">/</span><span class="n">Io</span>
+    
+    <span class="k">return</span> <span class="n">kt</span>
+    
+    
 <span class="k">def</span> <span class="nf">sind</span><span class="p">(</span><span class="n">the</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    r&#39;&#39;&#39; Petite descrition de la fonction icluant formules...</span>
+<span class="sd">    r&#39;&#39;&#39; Petite descrition de la fonction icluant formules</span>
 <span class="sd">    </span>
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -176,19 +208,14 @@
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
 <span class="sd">    param : float</span>
-<span class="sd">        Ce paramètre est...</span>
+<span class="sd">        l&#39;angle en degrés</span>
 
-<span class="sd">    Notes</span>
-<span class="sd">    -----</span>
-<span class="sd">    Notes s&#39;il en as.</span>
-
-<span class="sd">    References</span>
-<span class="sd">    ----------</span>
-<span class="sd">    La référence.</span>
 <span class="sd">    </span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">y</span> <span class="o">=</span> <span class="n">sin</span><span class="p">(</span><span class="n">the</span><span class="o">*</span><span class="n">pi</span><span class="o">/</span><span class="mf">180.0</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">y</span>
+    
+    
 <span class="k">def</span> <span class="nf">cosd</span><span class="p">(</span><span class="n">the</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    r&#39;&#39;&#39; Petite descrition de la fonction icluant formules...</span>
@@ -397,25 +424,27 @@
 </div>
 <div class="viewcode-block" id="angle_horaire"><a class="viewcode-back" href="../python.html#solar_mod.angle_horaire">[docs]</a><span class="k">def</span> <span class="nf">angle_horaire</span><span class="p">(</span><span class="n">sol_t</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    r&#39;&#39;&#39; Petite descrition de la fonction icluant formules...</span>
+<span class="sd">    Angle horaire en fonction du temps solaire en heures minutes</span>
 <span class="sd">    </span>
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    param : float</span>
-<span class="sd">        Ce paramètre est...</span>
+<span class="sd">    sol_t : float</span>
+<span class="sd">        Temps solaire en heures minutes de 0 à 24 hr</span>
 <span class="sd">        </span>
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">    param : float</span>
-<span class="sd">        Ce paramètre est...</span>
+<span class="sd">    ome : float</span>
+<span class="sd">        Angle horaire</span>
 
 <span class="sd">    Notes</span>
 <span class="sd">    -----</span>
-<span class="sd">    Notes s&#39;il en as.</span>
+<span class="sd">    La terre tourne 15 deg par heure.</span>
+<span class="sd">    ome = 0 à midi solaire (&gt;0 PM, &lt;0 AM)</span>
 
 <span class="sd">    References</span>
 <span class="sd">    ----------</span>
-<span class="sd">    La référence.</span>
+<span class="sd">    Solar Engineering of Thermal Procecess (1.6.10)</span>
+<span class="sd">    </span>
 <span class="sd">    </span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">x</span> <span class="o">=</span> <span class="n">sol_t</span><span class="o">.</span><span class="n">hr</span> <span class="o">+</span> <span class="n">sol_t</span><span class="o">.</span><span class="n">min</span><span class="o">/</span><span class="mf">60.0</span>
@@ -684,12 +713,20 @@
 </div>
 <div class="viewcode-block" id="heure_solaire"><a class="viewcode-back" href="../python.html#solar_mod.heure_solaire">[docs]</a><span class="k">def</span> <span class="nf">heure_solaire</span><span class="p">(</span><span class="n">lon</span><span class="p">,</span><span class="n">Lst</span><span class="p">,</span><span class="n">del_h</span><span class="p">,</span><span class="n">st</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    r&#39;&#39;&#39; Petite descrition de la fonction icluant formules...</span>
+<span class="sd">    Heure solaire (sol_t)</span>
 <span class="sd">    </span>
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    param : float</span>
-<span class="sd">        Ce paramètre est...</span>
+<span class="sd">    lon : float</span>
+<span class="sd">        longitude (lon.deg, lon.min )</span>
+<span class="sd">    Lst : float</span>
+<span class="sd">        longitude du méridien de l&#39;heure (-180 à 180, ex: -75 eastern time) </span>
+<span class="sd">    del_h : float</span>
+<span class="sd">        difference entre l&#39;heure legale et l&#39;heure strandard</span>
+<span class="sd">    st : float</span>
+<span class="sd">        temps legal</span>
+<span class="sd">            st_jour : jour de l&#39;année</span>
+<span class="sd">            st_hr : heure , st_min : minute</span>
 <span class="sd">        </span>
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
@@ -698,21 +735,15 @@
 
 <span class="sd">    Notes</span>
 <span class="sd">    -----</span>
-<span class="sd">    Notes s&#39;il en as.</span>
+<span class="sd">    del_h : Amerique (0 hiver , 1 ete),Europe (1 hiver , 2 ete)</span>
+<span class="sd">    </span>
 
 <span class="sd">    References</span>
 <span class="sd">    ----------</span>
-<span class="sd">    La référence.</span>
+<span class="sd">    Solar Engineering of Thermal Procecess</span>
 <span class="sd">    </span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="c"># st : temps legal</span>
-    <span class="c">#   st_jour : jour de l&#39;année</span>
-    <span class="c">#   st_hr : heure , st_min : minute</span>
-    <span class="c">#   lon : longitude (lon.deg, lon.min )</span>
-    <span class="c">#   Lst : longitude du méridien de l&#39;heure (-180 à 180, ex: -75 eastern time)</span>
-    <span class="c">#   del_h : difference entre l&#39;heure legale et l&#39;heure strandard</span>
-    <span class="c">#               Amerique    0 hiver , 1 ete</span>
-    <span class="c">#               Europe       1 hiver , 2 ete</span>
+
     <span class="n">sol_t</span>  <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s">&#39;temps&#39;</span><span class="p">,[</span><span class="s">&#39;hr&#39;</span><span class="p">,</span><span class="s">&#39;min&#39;</span><span class="p">,</span><span class="s">&#39;jour&#39;</span><span class="p">])</span>
     <span class="k">if</span> <span class="n">st</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>  <span class="c"># calul du temps actuel</span>
         <span class="n">st</span>  <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s">&#39;temps&#39;</span><span class="p">,[</span><span class="s">&#39;hr&#39;</span><span class="p">,</span><span class="s">&#39;min&#39;</span><span class="p">,</span><span class="s">&#39;jour&#39;</span><span class="p">])</span>
@@ -739,7 +770,9 @@
         <span class="n">sol_t</span><span class="o">.</span><span class="n">min</span> <span class="o">=</span> <span class="n">sol_t</span><span class="o">.</span><span class="n">min</span> <span class="o">+</span> <span class="mi">60</span>
         <span class="n">sol_t</span><span class="o">.</span><span class="n">hr</span> <span class="o">=</span> <span class="n">sol_t</span><span class="o">.</span><span class="n">hr</span><span class="o">-</span><span class="mi">1</span>
     <span class="n">sol_t</span><span class="o">.</span><span class="n">jour</span> <span class="o">=</span> <span class="n">n</span>
-    <span class="k">return</span> <span class="n">sol_t</span></div>
+    <span class="k">return</span> <span class="n">sol_t</span>
+    
+    </div>
 <div class="viewcode-block" id="heure_legale"><a class="viewcode-back" href="../python.html#solar_mod.heure_legale">[docs]</a><span class="k">def</span> <span class="nf">heure_legale</span><span class="p">(</span><span class="n">lon</span><span class="p">,</span><span class="n">Lst</span><span class="p">,</span><span class="n">del_h</span><span class="p">,</span><span class="n">sol_t</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    r&#39;&#39;&#39; Petite descrition de la fonction icluant formules...</span>
@@ -976,34 +1009,65 @@
 
     <span class="n">Gsc</span> <span class="o">=</span> <span class="mi">1367</span>
     <span class="n">G</span> <span class="o">=</span> <span class="n">Gsc</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="mf">0.033</span><span class="o">*</span><span class="n">cosd</span><span class="p">(</span><span class="mf">360.0</span><span class="o">*</span><span class="n">n</span><span class="o">/</span><span class="mf">365.0</span><span class="p">))</span>
-    <span class="k">return</span> <span class="n">G</span></div>
-<div class="viewcode-block" id="irradiation_extraterrestre"><a class="viewcode-back" href="../python.html#solar_mod.irradiation_extraterrestre">[docs]</a><span class="k">def</span> <span class="nf">irradiation_extraterrestre</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">thez</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">G</span>
+ 
+</div>
+<span class="k">def</span> <span class="nf">irradiation_horaire_tilted</span><span class="p">(</span><span class="n">Ibn</span><span class="p">,</span><span class="n">thez</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    r&#39;&#39;&#39; Petite descrition de la fonction icluant formules...</span>
+<span class="sd">    Irradiation moyenne horaire pour un capteur en angle.</span>
 <span class="sd">    </span>
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    param : float</span>
-<span class="sd">        Ce paramètre est...</span>
+<span class="sd">    Ibn : float</span>
+<span class="sd">        Irradiation moyenne diffuse normale</span>
+<span class="sd">    thez : float</span>
+<span class="sd">        Angle du capteur</span>
 <span class="sd">        </span>
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">    param : float</span>
-<span class="sd">        Ce paramètre est...</span>
+<span class="sd">    G : float</span>
+<span class="sd">        Irradiation moyenne diffuse</span>
 
-<span class="sd">    Notes</span>
-<span class="sd">    -----</span>
-<span class="sd">    Notes s&#39;il en as.</span>
 
 <span class="sd">    References</span>
 <span class="sd">    ----------</span>
-<span class="sd">    La référence.</span>
+<span class="sd">    Solar Engineering of Thermal Procecess (2.18.1)</span>
 <span class="sd">    </span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">Gsc</span> <span class="o">=</span> <span class="mi">1367</span>
+    
+    <span class="n">Ibt</span> <span class="o">=</span> <span class="n">Ibn</span><span class="o">*</span><span class="n">cosd</span><span class="p">(</span><span class="n">thez</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">Ibt</span>
+    
+    
+<div class="viewcode-block" id="irradiation_extraterrestre"><a class="viewcode-back" href="../python.html#solar_mod.irradiation_extraterrestre">[docs]</a><span class="k">def</span> <span class="nf">irradiation_extraterrestre</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">thez</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Irradiation extraterrestre incidente sur un plan normal au jour n de l&#39;année</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    n : float</span>
+<span class="sd">        Jour de l&#39;année</span>
+<span class="sd">    thez : float</span>
+<span class="sd">        Angle du capteur</span>
+<span class="sd">        </span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    G : float</span>
+<span class="sd">        Irradiation extraterrestre</span>
+
+
+<span class="sd">    References</span>
+<span class="sd">    ----------</span>
+<span class="sd">    Solar Engineering of Thermal Procecess (1.4.1a)</span>
+<span class="sd">    </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="n">Gsc</span> <span class="o">=</span> <span class="mi">1367</span> <span class="c"># constance solaire</span>
     <span class="n">Gn</span> <span class="o">=</span> <span class="n">Gsc</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="mf">0.033</span><span class="o">*</span><span class="n">cosd</span><span class="p">(</span><span class="mf">360.0</span><span class="o">*</span><span class="n">n</span><span class="o">/</span><span class="mf">365.0</span><span class="p">))</span>
     <span class="n">G</span> <span class="o">=</span> <span class="n">Gn</span><span class="o">*</span><span class="n">cosd</span><span class="p">(</span><span class="n">thez</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">G</span></div>
+    <span class="k">return</span> <span class="n">G</span>
+</div>
 <div class="viewcode-block" id="irradiation_extraterrestre_jour"><a class="viewcode-back" href="../python.html#solar_mod.irradiation_extraterrestre_jour">[docs]</a><span class="k">def</span> <span class="nf">irradiation_extraterrestre_jour</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">phi</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    r&#39;&#39;&#39; Petite descrition de la fonction icluant formules...</span>
@@ -1038,35 +1102,37 @@
 </div>
 <div class="viewcode-block" id="irradiation_extraterrestre_horaire"><a class="viewcode-back" href="../python.html#solar_mod.irradiation_extraterrestre_horaire">[docs]</a><span class="k">def</span> <span class="nf">irradiation_extraterrestre_horaire</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">phi</span><span class="p">,</span><span class="n">ome1</span><span class="p">,</span><span class="n">ome2</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    r&#39;&#39;&#39; Petite descrition de la fonction icluant formules...</span>
+<span class="sd">    Irradiation solaire extraterrestre par heure.</span>
 <span class="sd">    </span>
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    param : float</span>
-<span class="sd">        Ce paramètre est...</span>
-<span class="sd">        </span>
+<span class="sd">    n : float</span>
+<span class="sd">        Jour de lannee</span>
+<span class="sd">    phi : float</span>
+<span class="sd">        Angle lattitude</span>
+<span class="sd">    ome1 : float</span>
+<span class="sd">        Angle horaire 1</span>
+<span class="sd">    ome2 : float</span>
+<span class="sd">        Angle horaire 2</span>
+<span class="sd">    </span>
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">    param : float</span>
-<span class="sd">        Ce paramètre est...</span>
-
-<span class="sd">    Notes</span>
-<span class="sd">    -----</span>
-<span class="sd">    Notes s&#39;il en as.</span>
-
+<span class="sd">    Io : float</span>
+<span class="sd">        L&#39;irradiation solaire extraterrestre par heure    </span>
+<span class="sd">    </span>
 <span class="sd">    References</span>
 <span class="sd">    ----------</span>
-<span class="sd">    La référence.</span>
+<span class="sd">    Solar Engineering of Thermal Procecess (1.10.4)</span>
 <span class="sd">    </span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="c"># eq 1.10.4 de DB 3rd edition</span>
     <span class="n">G2</span> <span class="o">=</span> <span class="n">irradiation_extraterrestre_normale</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
     <span class="n">delt</span>  <span class="o">=</span> <span class="n">decl_solaire</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
     <span class="n">thez1</span> <span class="o">=</span> <span class="n">zenith_solaire</span><span class="p">(</span><span class="n">phi</span><span class="p">,</span><span class="n">delt</span><span class="p">,</span><span class="n">ome1</span><span class="p">)</span>
     <span class="n">thez2</span> <span class="o">=</span> <span class="n">zenith_solaire</span><span class="p">(</span><span class="n">phi</span><span class="p">,</span><span class="n">delt</span><span class="p">,</span><span class="n">ome2</span><span class="p">)</span>
     <span class="n">ct1</span> <span class="o">=</span> <span class="n">cosd</span><span class="p">(</span><span class="n">thez1</span><span class="p">)</span>
     <span class="n">ct2</span> <span class="o">=</span> <span class="n">cosd</span><span class="p">(</span><span class="n">thez2</span><span class="p">)</span>
+    
     <span class="k">if</span> <span class="p">(</span><span class="n">ct1</span><span class="o">&lt;</span><span class="mi">0</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">ct2</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">):</span>
         <span class="n">Io</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="k">elif</span> <span class="p">(</span><span class="n">cosd</span><span class="p">(</span><span class="n">thez1</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">):</span>
@@ -1082,7 +1148,8 @@
     <span class="n">Ion</span> <span class="o">=</span> <span class="mi">3600</span><span class="o">*</span><span class="n">G2</span>
     <span class="n">Io</span> <span class="o">=</span> <span class="n">Ion</span><span class="o">*</span><span class="mf">12.0</span><span class="o">/</span><span class="n">pi</span><span class="o">*</span><span class="p">(</span><span class="n">cosd</span><span class="p">(</span><span class="n">phi</span><span class="p">)</span><span class="o">*</span><span class="n">cosd</span><span class="p">(</span><span class="n">delt</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">sind</span><span class="p">(</span><span class="n">ome2</span><span class="p">)</span><span class="o">-</span><span class="n">sind</span><span class="p">(</span><span class="n">ome1</span><span class="p">))</span><span class="o">+</span><span class="n">pi</span><span class="o">*</span><span class="p">(</span><span class="n">ome2</span><span class="o">-</span><span class="n">ome1</span><span class="p">)</span><span class="o">/</span><span class="mf">180.0</span><span class="o">*</span><span class="n">sind</span><span class="p">(</span><span class="n">phi</span><span class="p">)</span><span class="o">*</span><span class="n">sind</span><span class="p">(</span><span class="n">delt</span><span class="p">))</span>
     <span class="n">Io</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">Io</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">Io</span></div>
+    <span class="k">return</span> <span class="n">Io</span>
+    </div>
 <div class="viewcode-block" id="irradiation_extraterrestre_jour_moyen"><a class="viewcode-back" href="../python.html#solar_mod.irradiation_extraterrestre_jour_moyen">[docs]</a><span class="k">def</span> <span class="nf">irradiation_extraterrestre_jour_moyen</span><span class="p">(</span><span class="n">nmois</span><span class="p">,</span><span class="n">phi</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    r&#39;&#39;&#39; Petite descrition de la fonction icluant formules...</span>
@@ -1118,33 +1185,30 @@
 </div>
 <div class="viewcode-block" id="jour_mois_jour_annee"><a class="viewcode-back" href="../python.html#solar_mod.jour_mois_jour_annee">[docs]</a><span class="k">def</span> <span class="nf">jour_mois_jour_annee</span><span class="p">(</span><span class="n">jour</span><span class="p">,</span><span class="n">mois</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    r&#39;&#39;&#39; Petite descrition de la fonction icluant formules...</span>
+<span class="sd">    fonction jour_mois_jour_annee sert à convertir un jour du calendrier en jour annuel 1 à 365.</span>
 <span class="sd">    </span>
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    param : float</span>
-<span class="sd">        Ce paramètre est...</span>
+<span class="sd">    jour : float</span>
+<span class="sd">        Jour du mois</span>
+<span class="sd">    mois : float</span>
+<span class="sd">        Mois de l&#39;année</span>
 <span class="sd">        </span>
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">    param : float</span>
-<span class="sd">        Ce paramètre est...</span>
+<span class="sd">    mois : float</span>
+<span class="sd">        Mois de l&#39;année</span>
 
 <span class="sd">    Notes</span>
 <span class="sd">    -----</span>
-<span class="sd">    Notes s&#39;il en as.</span>
+<span class="sd">    fonction qui transforme une date en jour et mois</span>
+<span class="sd">    en jour de 1 à 365</span>
+<span class="sd">    Les mois doivent s&#39;écrire</span>
+<span class="sd">    &#39;jan&#39;;&#39;fev&#39;;&#39;mars&#39;;&#39;avr&#39;;&#39;mai&#39;;&#39;juin&#39;;&#39;juil&#39;;&#39;aout&#39;;&#39;sept&#39;;&#39;oct</span>
+<span class="sd">    &#39;;&#39;nov&#39;;&#39;dec&#39;</span>
 
-<span class="sd">    References</span>
-<span class="sd">    ----------</span>
-<span class="sd">    La référence.</span>
 <span class="sd">    </span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="c">#</span>
-    <span class="c"># fonction qui transforme une date en jour et mois</span>
-    <span class="c"># en jour de 1 à 365</span>
-    <span class="c"># Les mois doivent s&#39;écrire</span>
-    <span class="c"># &#39;jan&#39;;&#39;fev&#39;;&#39;mars&#39;;&#39;avr&#39;;&#39;mai&#39;;&#39;juin&#39;;&#39;juil&#39;;&#39;aout&#39;;&#39;sept&#39;;&#39;oct</span>
-    <span class="c"># &#39;;&#39;nov&#39;;&#39;dec&#39;</span>
 
     <span class="n">ind</span> <span class="o">=</span> <span class="o">-</span><span class="mi">999</span><span class="p">;</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">12</span><span class="p">):</span>

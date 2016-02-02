@@ -3,6 +3,11 @@ Sphinx
 ******* 
 .. todo:: Documenter toutes les fonctions nécessaires.
 
+Pour nettoyer et générer le fichier html de la documentation::
+
+    cd C:\Users\Antoine\Documents\GitHub\Solar_mod\docs
+    make clean
+    make html
 
 Mise en page
 ************

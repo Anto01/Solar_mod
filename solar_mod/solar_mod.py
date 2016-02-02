@@ -30,9 +30,37 @@ jnm = array([31,28,31,30,31,30,31,31,30,31,30,31])
 jjr = array([0,31,59,90,120,151,181,212,243,273,304,334])
 nom = ['jan','fev','mars','avr','mai','juin','juil','aout','sept','oct','nov','dec']
 
+def indice_clarete_horaire(I,Io):
+    """
+    Cette fonction calcul l'indice de clareté horaire
+    
+    Parameters
+    ----------
+    I : float
+        Irradiation totale plan horozontal
+    Io : float
+        Irradiation extraterrestre horaire
+        
+        
+    Returns
+    -------
+    kt : float
+        Indice de clareté horaire
+        
+    References
+    ----------
+    Solar Engineering of Thermal Procecess (2.9.3)
+    
+    """
+    
+    kt = I/Io
+    
+    return kt
+    
+    
 def sind(the):
     """
-    r''' Petite descrition de la fonction icluant formules...
+    r''' Petite descrition de la fonction icluant formules
     
     Parameters
     ----------
@@ -42,19 +70,14 @@ def sind(the):
     Returns
     -------
     param : float
-        Ce paramètre est...
+        l'angle en degrés
 
-    Notes
-    -----
-    Notes s'il en as.
-
-    References
-    ----------
-    La référence.
     
     """
     y = sin(the*pi/180.0)
     return y
+    
+    
 def cosd(the):
     """
     r''' Petite descrition de la fonction icluant formules...
@@ -263,25 +286,27 @@ def angle_reflechi(beta):
 
 def angle_horaire(sol_t):
     """
-    r''' Petite descrition de la fonction icluant formules...
+    Angle horaire en fonction du temps solaire en heures minutes
     
     Parameters
     ----------
-    param : float
-        Ce paramètre est...
+    sol_t : float
+        Temps solaire en heures minutes de 0 à 24 hr
         
     Returns
     -------
-    param : float
-        Ce paramètre est...
+    ome : float
+        Angle horaire
 
     Notes
     -----
-    Notes s'il en as.
+    La terre tourne 15 deg par heure.
+    ome = 0 à midi solaire (>0 PM, <0 AM)
 
     References
     ----------
-    La référence.
+    Solar Engineering of Thermal Procecess (1.6.10)
+    
     
     """
     x = sol_t.hr + sol_t.min/60.0
@@ -548,14 +573,22 @@ def heure_angle(ome):
             sol_tn.hr = sol_tn.hr+1
     return sol_tn
 
-def heure_solaire(lon,Lst,del_h,st=0):
+def heure_solaire(lon,Lst,del_h,st):
     """
-    r''' Petite descrition de la fonction icluant formules...
+    Heure solaire (sol_t)
     
     Parameters
     ----------
-    param : float
-        Ce paramètre est...
+    lon : float
+        longitude (lon.deg, lon.min )
+    Lst : float
+        longitude du méridien de l'heure (-180 à 180, ex: -75 eastern time) 
+    del_h : float
+        difference entre l'heure legale et l'heure strandard
+    st : float
+        temps legal
+            st_jour : jour de l'année
+            st_hr : heure , st_min : minute
         
     Returns
     -------
@@ -564,21 +597,15 @@ def heure_solaire(lon,Lst,del_h,st=0):
 
     Notes
     -----
-    Notes s'il en as.
+    del_h : Amerique (0 hiver , 1 ete),Europe (1 hiver , 2 ete)
+    
 
     References
     ----------
-    La référence.
+    Solar Engineering of Thermal Procecess
     
     """
-    # st : temps legal
-    #   st_jour : jour de l'année
-    #   st_hr : heure , st_min : minute
-    #   lon : longitude (lon.deg, lon.min )
-    #   Lst : longitude du méridien de l'heure (-180 à 180, ex: -75 eastern time)
-    #   del_h : difference entre l'heure legale et l'heure strandard
-    #               Amerique    0 hiver , 1 ete
-    #               Europe       1 hiver , 2 ete
+
     sol_t  = namedtuple('temps',['hr','min','jour'])
     if st == 0:  # calul du temps actuel
         st  = namedtuple('temps',['hr','min','jour'])
@@ -606,6 +633,8 @@ def heure_solaire(lon,Lst,del_h,st=0):
         sol_t.hr = sol_t.hr-1
     sol_t.jour = n
     return sol_t
+    
+    
 def heure_legale(lon,Lst,del_h,sol_t):
     """
     r''' Petite descrition de la fonction icluant formules...
@@ -843,33 +872,64 @@ def irradiation_extraterrestre_normale(n):
     Gsc = 1367
     G = Gsc*(1+0.033*cosd(360.0*n/365.0))
     return G
-def irradiation_extraterrestre(n,thez):
+ 
+
+def irradiation_horaire_tilted(Ibn,thez):
     """
-    r''' Petite descrition de la fonction icluant formules...
+    Irradiation moyenne horaire pour un capteur en angle.
     
     Parameters
     ----------
-    param : float
-        Ce paramètre est...
+    Ibn : float
+        Irradiation moyenne diffuse normale
+    thez : float
+        Angle du capteur
         
     Returns
     -------
-    param : float
-        Ce paramètre est...
+    G : float
+        Irradiation moyenne diffuse
 
-    Notes
-    -----
-    Notes s'il en as.
 
     References
     ----------
-    La référence.
+    Solar Engineering of Thermal Procecess (2.18.1)
     
     """
-    Gsc = 1367
+    
+    Ibt = Ibn*cosd(thez)
+    
+    return Ibt
+    
+    
+def irradiation_extraterrestre(n,thez):
+    """
+    Irradiation extraterrestre incidente sur un plan normal au jour n de l'année
+    
+    Parameters
+    ----------
+    n : float
+        Jour de l'année
+    thez : float
+        Angle du capteur
+        
+    Returns
+    -------
+    G : float
+        Irradiation extraterrestre
+
+
+    References
+    ----------
+    Solar Engineering of Thermal Procecess (1.4.1a)
+    
+    """
+    
+    Gsc = 1367 # constance solaire
     Gn = Gsc*(1+0.033*cosd(360.0*n/365.0))
     G = Gn*cosd(thez)
     return G
+
 def irradiation_extraterrestre_jour(n,phi):
     """
     r''' Petite descrition de la fonction icluant formules...
@@ -904,35 +964,37 @@ def irradiation_extraterrestre_jour(n,phi):
 
 def irradiation_extraterrestre_horaire(n,phi,ome1,ome2):
     """
-    r''' Petite descrition de la fonction icluant formules...
+    Irradiation solaire extraterrestre par heure.
     
     Parameters
     ----------
-    param : float
-        Ce paramètre est...
-        
+    n : float
+        Jour de lannee
+    phi : float
+        Angle lattitude
+    ome1 : float
+        Angle horaire 1
+    ome2 : float
+        Angle horaire 2
+    
     Returns
     -------
-    param : float
-        Ce paramètre est...
-
-    Notes
-    -----
-    Notes s'il en as.
-
+    Io : float
+        L'irradiation solaire extraterrestre par heure    
+    
     References
     ----------
-    La référence.
+    Solar Engineering of Thermal Procecess (1.10.4)
     
     """
 
-    # eq 1.10.4 de DB 3rd edition
     G2 = irradiation_extraterrestre_normale(n)
     delt  = decl_solaire(n)
     thez1 = zenith_solaire(phi,delt,ome1)
     thez2 = zenith_solaire(phi,delt,ome2)
     ct1 = cosd(thez1)
     ct2 = cosd(thez2)
+    
     if (ct1<0) and (ct2 < 0):
         Io = 0
     elif (cosd(thez1) < 0):
@@ -949,6 +1011,7 @@ def irradiation_extraterrestre_horaire(n,phi,ome1,ome2):
     Io = Ion*12.0/pi*(cosd(phi)*cosd(delt)*(sind(ome2)-sind(ome1))+pi*(ome2-ome1)/180.0*sind(phi)*sind(delt))
     Io = max(Io,0)
     return Io
+    
 def irradiation_extraterrestre_jour_moyen(nmois,phi):
     """
     r''' Petite descrition de la fonction icluant formules...
@@ -984,33 +1047,30 @@ def irradiation_extraterrestre_jour_moyen(nmois,phi):
 
 def jour_mois_jour_annee(jour,mois):
     """
-    r''' Petite descrition de la fonction icluant formules...
+    fonction jour_mois_jour_annee sert à convertir un jour du calendrier en jour annuel 1 à 365.
     
     Parameters
     ----------
-    param : float
-        Ce paramètre est...
+    jour : float
+        Jour du mois
+    mois : float
+        Mois de l'année
         
     Returns
     -------
-    param : float
-        Ce paramètre est...
+    mois : float
+        Mois de l'année
 
     Notes
     -----
-    Notes s'il en as.
+    fonction qui transforme une date en jour et mois
+    en jour de 1 à 365
+    Les mois doivent s'écrire
+    'jan';'fev';'mars';'avr';'mai';'juin';'juil';'aout';'sept';'oct
+    ';'nov';'dec'
 
-    References
-    ----------
-    La référence.
     
     """
-    #
-    # fonction qui transforme une date en jour et mois
-    # en jour de 1 à 365
-    # Les mois doivent s'écrire
-    # 'jan';'fev';'mars';'avr';'mai';'juin';'juil';'aout';'sept';'oct
-    # ';'nov';'dec'
 
     ind = -999;
     for i in range(0,12):

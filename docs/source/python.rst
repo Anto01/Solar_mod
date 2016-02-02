@@ -10,6 +10,11 @@ Les programmes pythons sont documenté sur cette page. blablabla
 
 solar_mod
 ---------
+Pour mettre a jour le programme solar_mod::
+
+    cd C:\Users\Antoine\Documents\GitHub\Solar_mod
+    python setup.py install
+
 
 
 Angle d'azimuth solaire

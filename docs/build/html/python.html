@@ -95,8 +95,12 @@
 <li class="toctree-l2"><a class="reference internal" href="sphinx.html#autres">Autres</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="devoir.html">Devoirs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="devoir.html">Devoirs</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="devoir.html#devoir-2">Devoir #2</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="projet.html">Projet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="trnsys.html">trnsys</a></li>
 </ul>
 
           
@@ -138,6 +142,11 @@
 <p>Les programmes pythons sont documenté sur cette page. blablabla</p>
 <span class="target" id="module-solar_mod"></span><div class="section" id="solar-mod">
 <h2>solar_mod<a class="headerlink" href="#solar-mod" title="Permalink to this headline">¶</a></h2>
+<p>Pour mettre a jour le programme solar_mod:</p>
+<div class="highlight-python"><div class="highlight"><pre>cd C:\Users\Antoine\Documents\GitHub\Solar_mod
+python setup.py install
+</pre></div>
+</div>
 <div class="section" id="angle-d-azimuth-solaire">
 <h3>Angle d&#8217;azimuth solaire<a class="headerlink" href="#angle-d-azimuth-solaire" title="Permalink to this headline">¶</a></h3>
 <dl class="function">
@@ -195,24 +204,25 @@ Ce paramètre est...</td>
 <dl class="function">
 <dt id="solar_mod.angle_horaire">
 <code class="descclassname">solar_mod.</code><code class="descname">angle_horaire</code><span class="sig-paren">(</span><em>sol_t</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/solar_mod.html#angle_horaire"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#solar_mod.angle_horaire" title="Permalink to this definition">¶</a></dt>
-<dd><p>r&#8217;&#8216;&#8217; Petite descrition de la fonction icluant formules...</p>
+<dd><p>Angle horaire en fonction du temps solaire en heures minutes</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>param</strong> (<a class="reference external" href="https://docs.python.org/library/functions.html#float" title="(in Python v2.7)"><em>float</em></a>) &#8211; Ce paramètre est...</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>sol_t</strong> (<a class="reference external" href="https://docs.python.org/library/functions.html#float" title="(in Python v2.7)"><em>float</em></a>) &#8211; Temps solaire en heures minutes de 0 à 24 hr</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>param</strong> &#8211;
-Ce paramètre est...</td>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>ome</strong> &#8211;
+Angle horaire</td>
 </tr>
 <tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/library/functions.html#float" title="(in Python v2.7)">float</a></td>
 </tr>
 </tbody>
 </table>
 <p class="rubric">Notes</p>
-<p>Notes s&#8217;il en as.</p>
+<p>La terre tourne 15 deg par heure.
+ome = 0 à midi solaire (&gt;0 PM, &lt;0 AM)</p>
 <p class="rubric">References</p>
-<p>La référence.</p>
+<p>Solar Engineering of Thermal Procecess (1.6.10)</p>
 </dd></dl>
 
 </div>
@@ -463,24 +473,34 @@ Ce paramètre est...</td>
 <dl class="function">
 <dt id="solar_mod.heure_solaire">
 <code class="descclassname">solar_mod.</code><code class="descname">heure_solaire</code><span class="sig-paren">(</span><em>lon</em>, <em>Lst</em>, <em>del_h</em>, <em>st=0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/solar_mod.html#heure_solaire"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#solar_mod.heure_solaire" title="Permalink to this definition">¶</a></dt>
-<dd><p>r&#8217;&#8216;&#8217; Petite descrition de la fonction icluant formules...</p>
+<dd><p>Heure solaire (sol_t)</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>param</strong> (<a class="reference external" href="https://docs.python.org/library/functions.html#float" title="(in Python v2.7)"><em>float</em></a>) &#8211; Ce paramètre est...</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>lon</strong> (<a class="reference external" href="https://docs.python.org/library/functions.html#float" title="(in Python v2.7)"><em>float</em></a>) &#8211; longitude (lon.deg, lon.min )</li>
+<li><strong>Lst</strong> (<a class="reference external" href="https://docs.python.org/library/functions.html#float" title="(in Python v2.7)"><em>float</em></a>) &#8211; longitude du méridien de l&#8217;heure (-180 à 180, ex: -75 eastern time)</li>
+<li><strong>del_h</strong> (<a class="reference external" href="https://docs.python.org/library/functions.html#float" title="(in Python v2.7)"><em>float</em></a>) &#8211; difference entre l&#8217;heure legale et l&#8217;heure strandard</li>
+<li><strong>st</strong> (<a class="reference external" href="https://docs.python.org/library/functions.html#float" title="(in Python v2.7)"><em>float</em></a>) &#8211; temps legal
+st_jour : jour de l&#8217;année
+st_hr : heure , st_min : minute</li>
+</ul>
+</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>param</strong> &#8211;
-Ce paramètre est...</td>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>param</strong> &#8211;
+Ce paramètre est...</p>
+</td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/library/functions.html#float" title="(in Python v2.7)">float</a></td>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference external" href="https://docs.python.org/library/functions.html#float" title="(in Python v2.7)">float</a></p>
+</td>
 </tr>
 </tbody>
 </table>
 <p class="rubric">Notes</p>
-<p>Notes s&#8217;il en as.</p>
+<p>del_h : Amerique (0 hiver , 1 ete),Europe (1 hiver , 2 ete)</p>
 <p class="rubric">References</p>
-<p>La référence.</p>
+<p>Solar Engineering of Thermal Procecess</p>
 </dd></dl>
 
 <dl class="function">
@@ -647,24 +667,28 @@ Ce paramètre est...</td>
 <dl class="function">
 <dt id="solar_mod.irradiation_extraterrestre">
 <code class="descclassname">solar_mod.</code><code class="descname">irradiation_extraterrestre</code><span class="sig-paren">(</span><em>n</em>, <em>thez</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/solar_mod.html#irradiation_extraterrestre"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#solar_mod.irradiation_extraterrestre" title="Permalink to this definition">¶</a></dt>
-<dd><p>r&#8217;&#8216;&#8217; Petite descrition de la fonction icluant formules...</p>
+<dd><p>Irradiation extraterrestre incidente sur un plan normal au jour n de l&#8217;année</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>param</strong> (<a class="reference external" href="https://docs.python.org/library/functions.html#float" title="(in Python v2.7)"><em>float</em></a>) &#8211; Ce paramètre est...</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>n</strong> (<a class="reference external" href="https://docs.python.org/library/functions.html#float" title="(in Python v2.7)"><em>float</em></a>) &#8211; Jour de l&#8217;année</li>
+<li><strong>thez</strong> (<a class="reference external" href="https://docs.python.org/library/functions.html#float" title="(in Python v2.7)"><em>float</em></a>) &#8211; Angle du capteur</li>
+</ul>
+</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>param</strong> &#8211;
-Ce paramètre est...</td>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>G</strong> &#8211;
+Irradiation extraterrestre</p>
+</td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/library/functions.html#float" title="(in Python v2.7)">float</a></td>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference external" href="https://docs.python.org/library/functions.html#float" title="(in Python v2.7)">float</a></p>
+</td>
 </tr>
 </tbody>
 </table>
-<p class="rubric">Notes</p>
-<p>Notes s&#8217;il en as.</p>
 <p class="rubric">References</p>
-<p>La référence.</p>
+<p>Solar Engineering of Thermal Procecess (1.4.1a)</p>
 </dd></dl>
 
 <dl class="function">
@@ -693,24 +717,30 @@ Ce paramètre est...</td>
 <dl class="function">
 <dt id="solar_mod.irradiation_extraterrestre_horaire">
 <code class="descclassname">solar_mod.</code><code class="descname">irradiation_extraterrestre_horaire</code><span class="sig-paren">(</span><em>n</em>, <em>phi</em>, <em>ome1</em>, <em>ome2</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/solar_mod.html#irradiation_extraterrestre_horaire"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#solar_mod.irradiation_extraterrestre_horaire" title="Permalink to this definition">¶</a></dt>
-<dd><p>r&#8217;&#8216;&#8217; Petite descrition de la fonction icluant formules...</p>
+<dd><p>Irradiation solaire extraterrestre par heure.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>param</strong> (<a class="reference external" href="https://docs.python.org/library/functions.html#float" title="(in Python v2.7)"><em>float</em></a>) &#8211; Ce paramètre est...</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>n</strong> (<a class="reference external" href="https://docs.python.org/library/functions.html#float" title="(in Python v2.7)"><em>float</em></a>) &#8211; Jour de lannee</li>
+<li><strong>phi</strong> (<a class="reference external" href="https://docs.python.org/library/functions.html#float" title="(in Python v2.7)"><em>float</em></a>) &#8211; Angle lattitude</li>
+<li><strong>ome1</strong> (<a class="reference external" href="https://docs.python.org/library/functions.html#float" title="(in Python v2.7)"><em>float</em></a>) &#8211; Angle horaire 1</li>
+<li><strong>ome2</strong> (<a class="reference external" href="https://docs.python.org/library/functions.html#float" title="(in Python v2.7)"><em>float</em></a>) &#8211; Angle horaire 2</li>
+</ul>
+</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>param</strong> &#8211;
-Ce paramètre est...</td>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>Io</strong> &#8211;
+L&#8217;irradiation solaire extraterrestre par heure</p>
+</td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/library/functions.html#float" title="(in Python v2.7)">float</a></td>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference external" href="https://docs.python.org/library/functions.html#float" title="(in Python v2.7)">float</a></p>
+</td>
 </tr>
 </tbody>
 </table>
-<p class="rubric">Notes</p>
-<p>Notes s&#8217;il en as.</p>
 <p class="rubric">References</p>
-<p>La référence.</p>
+<p>Solar Engineering of Thermal Procecess (1.10.4)</p>
 </dd></dl>
 
 <dl class="function">
@@ -739,24 +769,32 @@ Ce paramètre est...</td>
 <dl class="function">
 <dt id="solar_mod.jour_mois_jour_annee">
 <code class="descclassname">solar_mod.</code><code class="descname">jour_mois_jour_annee</code><span class="sig-paren">(</span><em>jour</em>, <em>mois</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/solar_mod.html#jour_mois_jour_annee"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#solar_mod.jour_mois_jour_annee" title="Permalink to this definition">¶</a></dt>
-<dd><p>r&#8217;&#8216;&#8217; Petite descrition de la fonction icluant formules...</p>
+<dd><p>fonction jour_mois_jour_annee sert à convertir un jour du calendrier en jour annuel 1 à 365.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>param</strong> (<a class="reference external" href="https://docs.python.org/library/functions.html#float" title="(in Python v2.7)"><em>float</em></a>) &#8211; Ce paramètre est...</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>jour</strong> (<a class="reference external" href="https://docs.python.org/library/functions.html#float" title="(in Python v2.7)"><em>float</em></a>) &#8211; Jour du mois</li>
+<li><strong>mois</strong> (<a class="reference external" href="https://docs.python.org/library/functions.html#float" title="(in Python v2.7)"><em>float</em></a>) &#8211; Mois de l&#8217;année</li>
+</ul>
+</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>param</strong> &#8211;
-Ce paramètre est...</td>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>mois</strong> &#8211;
+Mois de l&#8217;année</p>
+</td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/library/functions.html#float" title="(in Python v2.7)">float</a></td>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference external" href="https://docs.python.org/library/functions.html#float" title="(in Python v2.7)">float</a></p>
+</td>
 </tr>
 </tbody>
 </table>
 <p class="rubric">Notes</p>
-<p>Notes s&#8217;il en as.</p>
-<p class="rubric">References</p>
-<p>La référence.</p>
+<p>fonction qui transforme une date en jour et mois
+en jour de 1 à 365
+Les mois doivent s&#8217;écrire
+&#8216;jan&#8217;;&#8217;fev&#8217;;&#8217;mars&#8217;;&#8217;avr&#8217;;&#8217;mai&#8217;;&#8217;juin&#8217;;&#8217;juil&#8217;;&#8217;aout&#8217;;&#8217;sept&#8217;;&#8217;oct
+&#8216;;&#8217;nov&#8217;;&#8217;dec&#8217;</p>
 </dd></dl>
 
 <dl class="function">

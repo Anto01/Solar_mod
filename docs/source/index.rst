@@ -13,13 +13,14 @@ TESTS
 Contents:
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 3
 
    ENR835
    python
    sphinx
    devoir
    projet
+   trnsys
 
 
 Indices and tables
