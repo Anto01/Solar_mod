@@ -29,7 +29,10 @@ Cours 4
 
 Cours 5
 ********
+
 **Théorie des capteurs solaires plats**
+
+Exemple 3.2 à été terminé au début du cours.
 
 Cours 6
 ********
